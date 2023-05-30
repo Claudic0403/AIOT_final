@@ -2,6 +2,7 @@ import requests
 import json
 import numpy as np
 from datetime import datetime, time
+import mysql.connector
 
 DIST = {
   "外埔區":0,
@@ -149,20 +150,20 @@ def print_data(Data):
 if __name__ == '__main__':
   get_data()
   print_data()
-  cnx = mysql.connector.connect(
-    host='172.20.10.4',
-    user='4109064206',
-    password='4109064206',
-    database='aiotdb'
-  )
-  c = cnx.cursor()
+#   cnx = mysql.connector.connect(
+#     host='172.20.10.4',
+#     user='4109064206',
+#     password='4109064206',
+#     database='aiotdb'
+#   )
+#   c = cnx.cursor()
 
-LEN = len(Data['endTime'])
-for i in range(LEN):
-  c.execute("""INSERT INTO project_table (signalType, startTime, endTime, PoP12h, T, RH, MinCI, WS, MaxAT, Wx, MaxCI, MinT, UVI, WeatherDescription, MinAT, MaxT, WD, Td)\
-        VALUES ('%s', '%s', '%s', %s, %s, %s, %s, %s, '%s', %s, %s, %s, %s, '%s', %s, %s, '%s', %s, %s)""",\
-        ('d', Data["startTime"][i], Data["endTime"][i], Data["PoP12h"][i], Data["T"][i], Data["RH"][i], Data["MinCI"][i], Data["WS"][i], Data["MaxAT"][i], \
-        Data["Wx"][i], Data["MaxCI"][i], Data["MinT"][i], Data["UVI"][i], Data["WeatherDescription"][i], Data["MinAT"][i], Data["MaxT"][i], Data["WD"][i], Data["Td"][i]))
-  c.commit()
+# LEN = len(Data['endTime'])
+# for i in range(LEN):
+#   c.execute("""INSERT INTO project_table (signalType, startTime, endTime, PoP12h, T, RH, MinCI, WS, MaxAT, Wx, MaxCI, MinT, UVI, WeatherDescription, MinAT, MaxT, WD, Td)\
+#         VALUES ('%s', '%s', '%s', %s, %s, %s, %s, %s, '%s', %s, %s, %s, %s, '%s', %s, %s, '%s', %s, %s)""",\
+#         ('d', Data["startTime"][i], Data["endTime"][i], Data["PoP12h"][i], Data["T"][i], Data["RH"][i], Data["MinCI"][i], Data["WS"][i], Data["MaxAT"][i], \
+#         Data["Wx"][i], Data["MaxCI"][i], Data["MinT"][i], Data["UVI"][i], Data["WeatherDescription"][i], Data["MinAT"][i], Data["MaxT"][i], Data["WD"][i], Data["Td"][i]))
+#   c.commit()
 
-c.close()
+# c.close()

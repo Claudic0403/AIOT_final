@@ -10,7 +10,6 @@ cnx = mysql.connector.connect(
 
 # Create a cursor object
 cursor = cnx.cursor()
-a = 25
 # Execute the query with the data
 cursor.execute("INSERT INTO project_table (signal_type, PoP12h, T) VALUES ('d', {}, {})".format(10, 27))
 
